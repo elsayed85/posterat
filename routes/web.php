@@ -13,30 +13,33 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('debug/{mode?}',function ($mode){
-    if(isset($mode) && $mode=='on'){session(['debug' => true]);
-    }else{session(['debug' => false]);}
+
+Route::get('debug/{mode?}', function ($mode) {
+    if (isset($mode) && $mode == 'on') {
+        session(['debug' => true]);
+    } else {
+        session(['debug' => false]);
+    }
 
     dump(config('app.debug'));
 });
 Route::post('subcat', function () {
     //if(!cache('s')){cache(['s'=>'1']);}
     $parent_id = request('id');
-    $subcategories=[];
-if($parent_id > 1) {
-    $subcategories = \App\Models\Category::where('parent', $parent_id)->get();
-}
+    $subcategories = [];
+    if ($parent_id > 1) {
+        $subcategories = \App\Models\Category::where('parent', $parent_id)->get();
+    }
     return response()->json([
         'subcategories' => $subcategories
     ]);
-
 })->name('subcat');
-Route::get('image/upload','ImageUploadController@fileCreate');
-Route::post('image/upload/store','ImageUploadController@fileStore')->name('image_upload');
-Route::post('image/delete','ImageUploadController@fileDestroy')->name('image_delete');
+Route::get('image/upload', 'ImageUploadController@fileCreate');
+Route::post('image/upload/store', 'ImageUploadController@fileStore')->name('image_upload');
+Route::post('image/delete', 'ImageUploadController@fileDestroy')->name('image_delete');
 
 
-Route::get('/clear', function() {
+Route::get('/clear', function () {
     Artisan::call('route:clear');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
@@ -44,12 +47,12 @@ Route::get('/clear', function() {
     Artisan::call('config:cache');
     return "clear done";
 });
-Route::get('/flash', function() {
+Route::get('/flash', function () {
     Artisan::call('migrate:fresh --seed');
     return "flash done";
 });
-Route::get('language/{locale}', function ($locale){
-    if(in_array($locale,config('setting.lang_code')))//['ar','en']
+Route::get('language/{locale}', function ($locale) {
+    if (in_array($locale, config('setting.lang_code'))) //['ar','en']
     {
         \Session::put('locale', $locale);
     }
@@ -86,12 +89,12 @@ Route::get('/search', 'Front\HomeController@search')->name('search');
 
 
 
-  Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes(['verify' => true]);
 
 //Route::namespace('Front')->middleware(['auth','verified'])
-Route::namespace('Front')->middleware(['auth','verified'])
+Route::namespace('Front')->middleware(['auth', 'verified'])
     ->group(function () {
 
         Route::post('upload/images', 'AdController@uploadImages')->name('ads.upload.images');
@@ -104,37 +107,35 @@ Route::namespace('Front')->middleware(['auth','verified'])
         Route::post('plan/{id}', 'PlanController@planPublish')->name('plan.publish');
         Route::resource('ads', 'AdController')->except(['show']);
 
-//Route::get('pay/success', 'PlanController@successPayment')->name('pay.success');
+        //Route::get('pay/success', 'PlanController@successPayment')->name('pay.success');
 
-Route::get('profile', 'UserController@edit')->name('profile');
-Route::post('profile', 'UserController@update')->name('profile.update');
-Route::get('myphoto', 'UserController@photo')->name('myphoto');
-Route::post('myphoto', 'UserController@updatePhoto')->name('myphoto.update');
-Route::resource('likes', 'LikeController');
-Route::resource('bookmarks', 'BookmarkController');
-Route::resource('admessages', 'AdMessageController');
-Route::resource('adabuses', 'AdAbuseController');
-Route::get('favourite','UserController@favourite')->name('favourite');
-Route::get('userads/{id}','UserController@userads')->name('userads');
-Route::get('myads','UserController@myads')->name('myads');
-Route::get('mysaved','UserController@mysaved')->name('mysaved');
-Route::get('sold/{id}','UserController@sold')->name('ads.sold');
-Route::get('archive/{id}','UserController@archive')->name('ads.archive');
+        Route::get('profile', 'UserController@edit')->name('profile');
+        Route::post('profile', 'UserController@update')->name('profile.update');
+        Route::get('myphoto', 'UserController@photo')->name('myphoto');
+        Route::post('myphoto', 'UserController@updatePhoto')->name('myphoto.update');
+        Route::resource('likes', 'LikeController');
+        Route::resource('bookmarks', 'BookmarkController');
+        Route::resource('admessages', 'AdMessageController');
+        Route::resource('adabuses', 'AdAbuseController');
+        Route::get('favourite', 'UserController@favourite')->name('favourite');
+        Route::get('userads/{id}', 'UserController@userads')->name('userads');
+        Route::get('myads', 'UserController@myads')->name('myads');
+        Route::get('mysaved', 'UserController@mysaved')->name('mysaved');
+        Route::get('sold/{id}', 'UserController@sold')->name('ads.sold');
+        Route::get('archive/{id}', 'UserController@archive')->name('ads.archive');
 
-Route::get('pay/package/success', 'BalancePackageController@successPayment')->name('package.success');
-Route::get('pay/package/failed', 'BalancePackageController@failedPayment')->name('package.failed');
-Route::get('package/current','BalancePackageController@currentPackage')->name('package.current');
+        Route::get('pay/package/success', 'BalancePackageController@successPayment')->name('package.success');
+        Route::get('pay/package/failed', 'BalancePackageController@failedPayment')->name('package.failed');
+        Route::get('package/current', 'BalancePackageController@currentPackage')->name('package.current');
 
-Route::resource('packages','BalancePackageController');
-Route::resource('coupons','CouponController');
+        Route::resource('packages', 'BalancePackageController');
+        Route::resource('coupons', 'CouponController');
     });
-Route::namespace('Front')->group(function (){
+Route::namespace('Front')->group(function () {
     Route::resource('pages', 'PageController')->only(['show']);
     Route::resource('sliders', 'SliderController')->only(['show']);
     Route::resource('ads', 'AdController')->only(['show']);
     Route::resource('categories', 'CategoryController')->only(['show']);
-
-
 });
 
 Route::prefix('dashboard')
@@ -143,65 +144,65 @@ Route::prefix('dashboard')
     ->middleware(['admin'])
     ->group(function () {
 
-     Route::resource('/', 'DashboardController');
-     Route::resource('/balancepackages', 'BalancePackageController');
-     Route::resource('/pages','PageController');
-     Route::resource('/sliders','SliderController');
-     Route::resource('/categories','CategoryController');
-     Route::resource('/cities','CityController');
-     Route::resource('/customfields','CustomFieldController');
-     Route::resource('/users','UserController');
-     Route::resource('/ads','AdController');
-     Route::resource('/coupons','CouponController');
-     Route::resource('/premiumpositions','PremiumPositionController');
-     Route::resource('/premiumpositiondays','PremiumPositionDayController');
+        Route::resource('/', 'DashboardController');
+        Route::resource('/balancepackages', 'BalancePackageController');
+        Route::resource('/pages', 'PageController');
+        Route::resource('/sliders', 'SliderController');
+        Route::resource('/categories', 'CategoryController');
+        Route::resource('/cities', 'CityController');
+        Route::resource('/customfields', 'CustomFieldController');
+        Route::resource('/users', 'UserController');
+        Route::resource('/ads', 'AdController');
+        Route::resource('/coupons', 'CouponController');
+        Route::resource('/premiumpositions', 'PremiumPositionController');
+        Route::resource('/premiumpositiondays', 'PremiumPositionDayController');
         Route::resource('settings', 'SettingController');
         Route::resource('adabuses', 'AdAbuseController');
-        Route::get('/sold/{id}','AdController@sold')->name('ads.sold');
-        Route::get('/archive/{id}','AdController@archive')->name('ads.archive');
-        Route::post('/customfields/{id}','CustomFieldController@to_category')->name('customfields.to_category');
+        Route::get('/sold/{id}', 'AdController@sold')->name('ads.sold');
+        Route::get('/archive/{id}', 'AdController@archive')->name('ads.archive');
+        Route::post('/customfields/{id}', 'CustomFieldController@to_category')->name('customfields.to_category');
 
-##TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST##
-//Route::view('custom-inputs','components.custom-inputs',['custom_inputs'=>App\Models\CustomField::where('category_id',8)->get()]);
-Route::view('/slider','frontend.home.simple-slider');
-Route::view('/front','frontend.layouts.app');
-##TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST##
-});
+        ##TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST##
+        //Route::view('custom-inputs','components.custom-inputs',['custom_inputs'=>App\Models\CustomField::where('category_id',8)->get()]);
+        Route::view('/slider', 'frontend.home.simple-slider');
+        Route::view('/front', 'frontend.layouts.app');
+        ##TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST####TEST##
+    });
 
-Route::get('xx',function(){
+Route::get('xx', function () {
     return view('frontend.users.login');
 });
+
 use  Illuminate\Support\Carbon;
 use  App\Models\PremiumAd;
-Route::get('error',function(){
-//    dd('error');
-    $p= PremiumAd::where('to', '<', Carbon::now())->where('published', 1);
-     if($p) {
-//        foreach ($p as $ps){
-         $ps = PremiumAd::where('to', '<', Carbon::now())->where('published', 1)->get();
-         $p->update(['published'=> 0 ,'expired_at' => Carbon::now()]);
-         dump($p);
-foreach ($ps as $item){
 
-//    $item->category()->premium_ads_num->decrement;
+Route::get('error', function () {
+    //    dd('error');
+    $p = PremiumAd::where('to', '<', Carbon::now())->where('published', 1);
+    if ($p) {
+        //        foreach ($p as $ps){
+        $ps = PremiumAd::where('to', '<', Carbon::now())->where('published', 1)->get();
+        $p->update(['published' => 0, 'expired_at' => Carbon::now()]);
+        dump($p);
+        foreach ($ps as $item) {
 
-    dump('was: '.$item->category->premium_ads_num);
-    $item->category->decrement('premium_ads_num');
-    dump('been: '.$item->category->premium_ads_num);
+            //    $item->category()->premium_ads_num->decrement;
 
-}
-
+            dump('was: ' . $item->category->premium_ads_num);
+            $item->category->decrement('premium_ads_num');
+            dump('been: ' . $item->category->premium_ads_num);
+        }
     }
     dd($p);
-//}
+    //}
 });
 //Route::view('profile','home')->name('profile');
 //Route::view('messages','home')->name('messages');
 //Route::view('messages','home')->name('messages');
-Route::view('archives','home')->name('archives');
+Route::view('archives', 'home')->name('archives');
 //Route::view('myads','home')->name('myads');
-Route::view('deactive','home')->name('deactive');
-Route::view('success','frontend.ads.success')->name('success');
+Route::view('deactive', 'home')->name('deactive');
+Route::view('success', 'frontend.ads.success')->name('success');
 //Route::view('pay/failed','frontend.pays.failed')->name('pay.failed');
 //Route::get('/{page}', 'AdminController@index');
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['admin']], function () {
