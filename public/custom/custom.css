@@ -1,0 +1,77 @@
+.social { height:35px;width:35px;border-color: #450cff; }
+.grow { transition: all .2s ease-in-out;}
+.grow:hover { transform: scale(1.4); }
+.btn{border-radius: 15px;}
+.btn-next{
+    color: #ffffff;
+    background-color: #450cff !important;
+    border-color: #00009f;
+}
+.input_icon{
+            max-width:40px;
+            max-height:40px;
+        }
+.custom-field {
+    border: 2px solid #3EEA3C;
+    padding: 20px;
+	color:#fff;
+    border-radius: 4em / 5em;
+    background-color: #ffa20c;
+    min-height: 50px;
+    max-height: 50px;
+	width:200px;
+	/*text-align: center;*/
+}
+.custom-field-in {
+    border: 2px solid #fff;
+    padding: 20px;
+	color:#fff;
+    border-radius: 4em / 5em;
+    background-color: #656565;
+    min-height: 50px;
+    max-height: 50px;
+	width:200px;
+	/*text-align: center;*/
+}
+.check-true{
+ background-image: url('https://posterat.com/custom/icons/check-true.png');
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    margin-top: -30px !important;
+}
+.check-false{
+ background-image: url('https://posterat.com/custom/icons/check-false.png');
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    margin-top: -30px !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .badbtn {
+        display: none !important;
+    } 
+	.btnm{
+        display: inline-block !important;
+        width:500px !important;
+        text-align:center !important;
+        border-radius:15px !important;
+    }
+    .select2-results__option[aria-selected]{
+        text-align: center !important;
+    }
+	.searchm{
+	display: inline-block !important;
+	width:80% !important;
+	padding:20px !important;
+        text-align:center !important;
+    }
+	.searcharea{   
+	width:80% !important;
+	text-align:center !important;
+	}
+	.input-group{
+		width:90% !important;
+	}
+}

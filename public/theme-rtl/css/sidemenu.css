@@ -1,0 +1,121 @@
+.ramymenu {
+    /*width: 380px;*/
+    /*width: 100%;*/
+    /*font-family: Verdana, Geneva, sans-serif;*/
+    /*font-weight: 400;*/
+    /*font-size: 15px;*/
+    line-height: 15px;
+    position: relative;
+    padding: 0 4px 0 0;
+    margin: 0;
+    background-color: #fff;
+}
+.ramymenu a, .ramymenu a:link, .ramymenu a:visited, .ramymenu a:focus, span {
+    color: #450cff;
+    text-decoration: none;
+}
+.ramymenu a:hover {
+    color: #450cff;
+    text-decoration: none;
+}
+.ramymenu > li {
+    display: block;
+    text-align: right;
+    margin-right: -4px;
+    border-right: 1px solid rgba(255, 255, 255, 0.11);
+    box-shadow: -1px 0 0 rgba(0, 0, 0, 0.1);
+
+}
+.ramymenu > li > a {
+    padding:20px 18px;
+    display: block;
+    /*border-top: 1px solid #8699A4;*/
+    border-right: 1px solid #8699A4;
+    border-bottom: .5px solid #8699A4;
+    border-left: 1px solid #8699A4;
+}
+.ramymenu > li:hover > a {
+    color: #450cff;
+}
+.ramymenu > li:hover {
+    background-color: #ffa20c;
+}
+/* Megadrop width dropdown */
+.ramymenu > li > .ramymegadrop {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    list-style: none;
+    top: 0px;
+    right: 100%;
+    width: 1100px;
+    min-height: 100%;
+    text-align: right;
+    margin-top:30px;
+    padding: 0;
+    z-index: 99;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    overflow: hidden;
+    border-top: 2px solid #450cff;
+    border-left: 2px solid #450cff;
+    border-bottom: 2px solid #450cff;
+    background-color: #fff;
+}
+.ramymenu > li:hover .ramymegadrop {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0px;
+}
+.ramymenu ul li:hover:after {
+    color: #450cff;
+}
+.ramymenu .ramycol {
+    width: 22.2%;
+    float: right;
+    color:white;
+    margin: 0 2.2% 0 0;
+}
+.ramymenu .ramycol ul {
+    padding: 0;
+    margin: 0;
+}
+.ramymenu .ramycol ul li {
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+}
+.ramymenu .ramycol h3 a{
+    font-size: 14px;
+    padding: 10px 0;
+    font-weight: bold;
+    margin: 5px 0 5px 0;
+    color: #ffa20c;
+    /*background: #eee;*/
+}
+.ramymenu .ramycol h3 a:hover {
+    /*color: #111;*/
+    text-decoration: underline;
+    /*font-size: 16px;*/
+}
+.ramymenu .ramycol a {
+    font-size: 12px;
+
+}
+.ramymenu .ramycol ul li a {
+    display: block;
+    padding: 0 0 15px 0;
+    color: #450cff;
+}
+.ramymenu .ramycol ul li a:hover {
+    /*color: #111;*/
+    text-decoration: underline;
+    font-size: 14px;
+}
+.ramymenu > li > ul li ul, .ramymenu li >ul li, .ramymenu > li > .ramymegadrop, .ramymenu > li > ul, .ramymenu > li {
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}

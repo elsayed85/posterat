@@ -1,0 +1,69 @@
+[19-Feb-2021 22:16:29 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:16:53 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:17:30 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:18:24 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:24:20 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:24:30 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:24:36 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:24:42 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:25:25 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:25:38 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:26:32 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:29:15 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:32:40 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:32:46 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:33:41 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:34:19 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[19-Feb-2021 22:36:48 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[20-Feb-2021 01:49:03 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[20-Feb-2021 01:49:11 UTC] PHP Fatal error:  Cannot use empty array elements in arrays in /home/webposter/public_html/resources/lang/en/theme.php on line 6
+[21-Feb-2021 01:14:03 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/helpers.p in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[21-Feb-2021 01:14:06 UTC] PHP Fatal error:  Uncaught RuntimeException: A facade root has not been set. in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php:258
+Stack trace:
+#0 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(426): Illuminate\Support\Facades\Facade::__callStatic('replaceNamespac...', Array)
+#1 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(403): Illuminate\Foundation\Exceptions\Handler->registerErrorViewPaths()
+#2 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(314): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#3 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\H in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php on line 258
+[21-Feb-2021 01:14:07 UTC] PHP Fatal error:  Uncaught RuntimeException: A facade root has not been set. in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php:258
+Stack trace:
+#0 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(426): Illuminate\Support\Facades\Facade::__callStatic('replaceNamespac...', Array)
+#1 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(403): Illuminate\Foundation\Exceptions\Handler->registerErrorViewPaths()
+#2 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(314): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#3 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\H in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php on line 258
+[21-Feb-2021 01:14:09 UTC] PHP Fatal error:  Uncaught RuntimeException: A facade root has not been set. in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php:258
+Stack trace:
+#0 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(426): Illuminate\Support\Facades\Facade::__callStatic('replaceNamespac...', Array)
+#1 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(403): Illuminate\Foundation\Exceptions\Handler->registerErrorViewPaths()
+#2 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(314): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#3 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\H in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php on line 258
+[21-Feb-2021 01:14:48 UTC] PHP Fatal error:  Uncaught RuntimeException: A facade root has not been set. in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php:258
+Stack trace:
+#0 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(426): Illuminate\Support\Facades\Facade::__callStatic('replaceNamespac...', Array)
+#1 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(403): Illuminate\Foundation\Exceptions\Handler->registerErrorViewPaths()
+#2 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(314): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#3 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\H in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php on line 258
+[21-Feb-2021 01:14:50 UTC] PHP Fatal error:  Uncaught RuntimeException: A facade root has not been set. in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php:258
+Stack trace:
+#0 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(426): Illuminate\Support\Facades\Facade::__callStatic('replaceNamespac...', Array)
+#1 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(403): Illuminate\Foundation\Exceptions\Handler->registerErrorViewPaths()
+#2 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(314): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#3 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\H in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php on line 258
+[21-Feb-2021 01:14:51 UTC] PHP Fatal error:  Uncaught RuntimeException: A facade root has not been set. in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php:258
+Stack trace:
+#0 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(426): Illuminate\Support\Facades\Facade::__callStatic('replaceNamespac...', Array)
+#1 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(403): Illuminate\Foundation\Exceptions\Handler->registerErrorViewPaths()
+#2 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(314): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#3 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\H in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php on line 258
+[21-Feb-2021 01:17:04 UTC] PHP Fatal error:  Uncaught RuntimeException: A facade root has not been set. in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php:258
+Stack trace:
+#0 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(426): Illuminate\Support\Facades\Facade::__callStatic('replaceNamespac...', Array)
+#1 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(403): Illuminate\Foundation\Exceptions\Handler->registerErrorViewPaths()
+#2 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(314): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#3 /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(211): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\H in /home/webposter/public_html/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php on line 258
