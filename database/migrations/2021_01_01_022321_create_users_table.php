@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->unsignedInteger('phone')->unique();
             $table->string('password');
-            $table->string('bio');
+            $table->string('bio')->nullable();
             $table->string('lang_code',2)->default('ar');
             $table->unsignedSmallInteger('usual_balance')->default(0);
             $table->unsignedMediumInteger('paid_balance')->default(0);
@@ -32,6 +32,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('last_login')->nullable();
             $table->string('ip')->nullable();
             $table->timestamp('baned_at')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('photo_thumb')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

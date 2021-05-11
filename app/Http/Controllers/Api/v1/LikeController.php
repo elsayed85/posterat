@@ -8,39 +8,20 @@ use App\Http\Controllers\Controller;
 
 class LikeController extends Controller
 {
-
     public function store(LikeRequest $request)
     {
-        try {
-            Like::create([
-                'user_id' => $request->user_id,
-                'ad_id' => $request->ad_id
-            ]);
-
-            return response()->json([
-                'message' => 'You liked this Ad'
-            ], 200);
-
-        } catch (\Exception $ex) {
-            $message = $ex->getMessage();
-            return response()->json($message, 400);
-        }
+        $like = Like::create($request->validated());
+        return success([
+            'message' => 'You liked this Ad',
+            'like' => $like
+        ], 201);
     }
 
-
-    public function destroy($id)
+    public function destroy(Like $like)
     {
-        try {
-            $like = Like::find($id);
-            $like->delete();
-            return response()->json([
-                'message' => 'You removed like of this Ad'
-            ], 200);
-
-        } catch (\Exception $ex) {
-            $message = $ex->getMessage();
-            return response()->json($message, 400);
-        }
+        $like->delete();
+        return success([
+            'message' => 'You removed like of this Ad'
+        ], 200);
     }
-
 }

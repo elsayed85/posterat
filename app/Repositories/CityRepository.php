@@ -9,31 +9,26 @@ class CityRepository
 {
     public function all()
     {
-        $cities = CityResource::collection(City::where('published',1)->get());
-            if (!$cities->isEmpty()) {
-                return response()->json([
-                'status' => 200,
+        $cities = CityResource::collection(City::where('published', 1)->get());
+        if (!$cities->isEmpty()) {
+            return success([
                 'cities' => $cities
-                ]);
-            }
+            ]);
+        }
 
-        return response()->json(['status' => 404,'message'=>'not found any city']);
-
-    }    
+        return failed('not found any city', [], 404);
+    }
     public function findById($id)
     {
 
         $city = CityResource::collection(
-            City::where('published',1)->where('id', $id)->get()
+            City::where('published', 1)->where('id', $id)->get()
         );
+
         if (!$city->isEmpty()) {
-
-            return response()->json(['status' => 200, 'city' => $city]);
-
+            return success($city);
         }
 
-        return response()->json(['status' => 404,'message'=>'this city not found or not available']);
+        return failed('this city not found or not available', [], 404);
     }
-   
-
 }

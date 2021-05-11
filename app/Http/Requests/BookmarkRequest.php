@@ -24,8 +24,8 @@ class BookmarkRequest extends FormRequest
     public function rules()
     {
         return [
-            'ad_id' => 'required|numeric',
-            'user_id' => 'required|numeric',
+            'ad_id' => ['required' , 'integer' , 'exists:ads,id'],
+            'user_id' => ['required' , 'integer' , 'exists:users,id'],
         ];
     }
 

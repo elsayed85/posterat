@@ -23,10 +23,18 @@ class LikeRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'ad_id' => 'required|numeric',
-            'user_id' => 'required|numeric',
-        ];
+        if ($this->isMethod("POST")) {
+            return [
+                'ad_id' => 'sometimes|numeric',
+                'user_id' => 'sometimes|numeric',
+            ];
+        } elseif ($this->isMethod("PUT") || $this->isMethod("PATCH")) {
+            return [
+                'ad_id' => 'sometimes|numeric',
+                'user_id' => 'sometimes|numeric',
+            ];
+        }
+        return [];
     }
 
 }

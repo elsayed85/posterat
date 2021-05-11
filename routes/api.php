@@ -1,57 +1,45 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\v1\AuthController;
+use App\Http\Controllers\Api\v1\BalancePackageController;
+use App\Http\Controllers\Api\V1\BookmarkController;
+use App\Http\Controllers\Api\v1\CategoryController;
+use App\Http\Controllers\Api\v1\LikeController;
+use App\Http\Controllers\Api\v1\User\MeController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => "v1", 'as' => 'v1.'], function () {
+    Route::middleware(['guest'])->group(function () {
+        Route::post('register', [AuthController::class, "register"])->name('register');
+        Route::post('login', [AuthController::class, "login"])->name('login');
+        Route::post('forget-password', [AuthController::class, "forgetPassword"])->name('forget_password');
+    });
+
+    Route::middleware(['auth:sanctum'])->prefix('user')->as('user.')->group(function () {
+        Route::get('me', [MeController::class, "me"])->name('me');
+        Route::get('favourite', [MeController::class, "favourite"])->name('favourite');
+        Route::get('userads/{user}', [MeController::class, "userads"])->name('userads');
+        Route::get('myads', [MeController::class, "myads"])->name('myads');
+        Route::get('mysaved', [MeController::class, "mysaved"])->name('mysaved');
+        Route::post('logout', [AuthController::class, "logout"])->name('logout');
+        Route::get('statuses', [MeController::class, "statuses"])->name('statuses');
+        Route::post('update-avatar', [MeController::class, "updataAvatar"])->name('updata_avatar');
+        Route::post('update-info', [MeController::class, "updateInfo"])->name('update_info');
+        Route::post('change-password', [MeController::class, "changePassword"])->name('change_password');
+        Route::post('verify-email', [MeController::class, "verifyEmail"])->name('verify_email');
+
+        Route::get('packages', [BalancePackageController::class, "index"])->name('packages.index');
+        Route::get('packages/{package}', [BalancePackageController::class, "show"])->name('packages.show');
+
+        Route::post('like', [LikeController::class, "store"])->name('likes.store');
+        Route::delete('likes/{like}', [LikeController::class, "destroy"])->name('likes.destroy');
+
+        Route::get('categories', [CategoryController::class, "index"])->name('categories.index');
+        Route::get('categories/{category}', [CategoryController::class, "show"])->name('categories.show');
+
+        Route::apiResource('bookmarks', "Api\V1\BookmarkController")->names('bookmarks');
+        Route::apiResource('city', "Api\V1\CityController")->names('city');
+        Route::apiResource('coupon', "Api\V1\CouponController")->names('coupon');
+    });
 });
-Route::apiResources(['/v1/balancepackages' => 'api\v1\BalancePackageController'], ['only' => ['index', 'show']]);
-Route::apiResources(['/v1/categories' => 'Api\v1\CategoryController'], ['only' => ['index', 'show']]);
-
-Route::apiResources(['/v1/bookmarks' => 'Api\v1\BookmarkController']);
-
-Route::apiResources(['/v1/coupons' => 'Api\v1\CouponController']);
-
-Route::apiResources(['/v1/cities' => 'Api\v1\CityController']);
-
-Route::apiResources(['/v1/likes' => 'Api\v1\LikeController'], ['only' => ['store', 'destroy']]);
-
-Route::get('/v1/open', 'Api\v1\DataController@open'); //test
-Route::prefix('/v1/')
-    ->namespace('Api\v1')
-    ->middleware(['jwt.verify'])
-    ->group(function () {
-
-        Route::get('logout', 'UserController@logout');
-        Route::get('closed', 'DataController@closed'); //test
-
-    });
-Route::prefix('/v1/')
-    ->namespace('Api\v1')
-    ->group(function () {
-        Route::post('register', 'UserController@register');
-        Route::post('login', 'UserController@authenticate');
-        Route::post('password/reset', 'ResetPasswordController@recover')->name('password.reset');
-        Route::post('password/change', 'PasswordResetRequestController@passwordResetProcess');
-        //        Route::post('update/user/{id}', 'UserController@update');
-    });
-//Route::group(['middleware' => ['jwt.verify']], function() {
-//Route::post('update/user/{id}', 'Api\v1\UserController@update');
-//Route::get('logout', 'Api\v1\UserController@logout');
-//
-//
-//Route::get('closed', 'Api\v1\DataController@closed');//test
-////Route::get('user', 'Api\v1\UserController@getAuthenticatedUser');
-//});

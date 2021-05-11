@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CouponRequest;
 use App\Repositories\CouponRepository;
 
-
 class CouponController extends Controller
 {
     private $couponRepository;
@@ -24,7 +23,7 @@ class CouponController extends Controller
      */
     public function index()
     {
-         return $this->couponRepository->all();
+        return $this->couponRepository->all();
     }
 
 
@@ -36,23 +35,11 @@ class CouponController extends Controller
      */
     public function store(CouponRequest $request)
     {
-        try {
-            Coupon::create([
-                'promo_code' => $request->promo_code,
-                'discount_type' => $request->discount_type,
-                'discount_limit' => $request->discount_limit,
-                'discount_value' => $request->discount_value,
-                'user_id' => $request->user_id,
-            ]);
-
-            return response()->json([
-                'message' => 'Coupon is made successfully'
-            ], 200);
-
-        } catch (\Exception $ex) {
-            $message = $ex->getMessage();
-            return response()->json($message, 400);
-        }
+        $coupon = Coupon::create($request->validated());
+        return success([
+            'message' => 'Coupon is made successfully',
+            'coupon' => $coupon
+        ], 201);
     }
 
     /**
@@ -74,26 +61,13 @@ class CouponController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CouponRequest $request, $id)
+    public function update(CouponRequest $request, Coupon $coupon)
     {
-        try {
-            $coupon = Coupon::findOrFail($id);
-            $coupon->update([
-                'promo_code' => $request->promo_code,
-                'discount_type' => $request->discount_type,
-                'discount_limit' => $request->discount_limit,
-                'discount_value' => $request->discount_value,
-                'user_id' => $request->user_id,
-            ]);
-
-            return response()->json([
-                'message' => 'Coupon is updated successfully'
-            ], 200);
-
-        } catch (\Exception $ex) {
-            $message = $ex->getMessage();
-            return response()->json($message, 400);
-        }
+        $coupon->update($request->validated());
+        return success([
+            'message' => 'Coupon is updated successfully',
+            'coupon' => $coupon
+        ], 200);
     }
 
     /**
@@ -102,19 +76,11 @@ class CouponController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Coupon $coupon)
     {
-        try{
-            $coupon = Coupon::findOrFail($id);
-            $coupon->delete();
-
-            return response()->json([
-                'message' => 'Coupon is Deleted successfully'
-            ], 200);
-
-        } catch(\Exception $ex) {
-            $message = $ex->getMessage();
-            return response()->json($message, 400);
-        }
+        $coupon->delete();
+        return success([
+            'message' => 'Coupon is Deleted successfully'
+        ], 200);
     }
 }

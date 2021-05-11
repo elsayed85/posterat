@@ -24,9 +24,8 @@ class CityController extends Controller
      */
     public function index()
     {
-         return $this->cityRepository->all();
+        return $this->cityRepository->all();
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -36,21 +35,10 @@ class CityController extends Controller
      */
     public function store(CityRequest $request)
     {
-        try {
-            City::create([
-                'name' => $request->name,
-                'coordinate' => $request->coordinate,
-                'show' => $request->show,
-            ]);
-
-            return response()->json([
-                'message' => 'City is added successfully'
-            ], 200);
-
-        } catch (\Exception $ex) {
-            $message = $ex->getMessage();
-            return response()->json($message, 400);
-        }
+        City::create($request->validated());
+        return success([
+            'message' => 'City is added successfully'
+        ], 201);
     }
 
     /**
@@ -72,24 +60,12 @@ class CityController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CityRequest $request, $id)
+    public function update(CityRequest $request, City $city)
     {
-        try {
-            $city = City::findOrFail($id);
-            $city->update([
-                'name' => $request->name,
-                'coordinate' => $request->coordinate,
-                'show' => $request->show,
-            ]);
-
-            return response()->json([
-                'message' => 'City data updated successfully'
-            ], 200);
-
-        } catch (\Exception $ex) {
-            $message = $ex->getMessage();
-            return response()->json($message, 400);
-        }
+        $city->update($request->validated());
+        return success([
+            'message' => 'City data updated successfully'
+        ], 200);
     }
 
     /**
@@ -98,19 +74,11 @@ class CityController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(City $city)
     {
-        try{
-            $city = City::findOrFail($id);
-            $city->delete();
-
-            return response()->json([
-                'message' => 'City is Deleted successfully'
-            ], 200);
-
-        } catch(\Exception $ex) {
-            $message = $ex->getMessage();
-            return response()->json($message, 400);
-        }
+        $city->delete();
+        return success([
+            'message' => 'City is Deleted successfully'
+        ], 200);
     }
 }

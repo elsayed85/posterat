@@ -14,6 +14,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.5",
         "laravel/framework": "^7.0",
+        "laravel/sanctum": "^2.10",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
         "tymon/jwt-auth": "^1.0",
@@ -34,6 +35,10 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/Helpers/functions.php",
+            "app/Helpers/Api.php"
         ]
     },
     "autoload-dev": {

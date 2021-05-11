@@ -7,15 +7,12 @@ use App\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
 {
-
-   
     private $categoryRepository;
 
     public function __construct(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
-
 
     public function index()
     {
@@ -27,5 +24,4 @@ class CategoryController extends Controller
     {
         return $this->categoryRepository->findById($id);
     }
-
 }

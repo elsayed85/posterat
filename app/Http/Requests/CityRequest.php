@@ -23,11 +23,21 @@ class CityRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|max:30',
-            'coordinate' => 'required:max:50',
-            'show' => 'required|in:0,1',
-        ];
+        if ($this->isMethod("POST")) {
+            return [
+                'name_en' => ['required', 'min:2', 'max:30'],
+                'name_ar' => ['required', 'min:2', 'max:30'],
+                'coordinate' => ['nullable', 'max:50'],
+                'published' => ['required', 'in:0,1'],
+            ];
+        } elseif ($this->isMethod("PUT") || $this->isMethod("PATCH")) {
+            return [
+                'name_en' => ['sometimes', 'min:2', 'max:30'],
+                'name_ar' => ['sometimes', 'min:2', 'max:30'],
+                'coordinate' => ['sometimes' , 'nullable', 'max:50'],
+                'published' => ['sometimes', 'in:0,1'],
+            ];
+        }
+        return [];
     }
-
 }

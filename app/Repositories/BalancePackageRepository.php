@@ -12,17 +12,13 @@ class BalancePackageRepository
     {
         $balancepackages = BalancePackageResource::collection(BalancePackage::active()->get());
 
-            if (!$balancepackages->isEmpty()) {
-
-                return response()->json([
-                'status' => 200,
+        if (!$balancepackages->isEmpty()) {
+            return success([
                 'balancepackages' => $balancepackages
-                ]);
+            ]);
+        }
 
-            }
-
-        return response()->json(['status' => 404,'message'=>'not found any balance package']);
-
+        return failed('not found any balance package', [], 404);
     }
 
     public function findById($id)
@@ -32,12 +28,9 @@ class BalancePackageRepository
         );
 
         if (!$balancepackage->isEmpty()) {
-
-            return response()->json(['status' => 200, 'balancepackage' => $balancepackage]);
-
+            return success($balancepackage);
         }
 
-        return response()->json(['status' => 404,'message'=>'this balance package not found or not available']);
+        return failed('this balance package not found or not available', [], 404);
     }
-
 }

@@ -10,7 +10,7 @@ class Bookmark extends Model
     protected $table = 'bookmarks';
     protected $guarded = ['id'];
 
-############################## Beginning  Relations ##############################
+    ############################## Beginning  Relations ##############################
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -19,6 +19,6 @@ class Bookmark extends Model
     {
         return $this->belongsTo(Ad::class);
     }
-################################# End  Relations #################################
+    ################################# End  Relations #################################
 
 }

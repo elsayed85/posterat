@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Bookmark;
 use App\Http\Controllers\Controller;
@@ -30,67 +30,28 @@ class BookmarkController extends Controller
 
     public function store(BookmarkRequest $request)
     {
-        try {
-            Bookmark::create([
-                'user_id' => $request->user_id,
-                'ad_id' => $request->ad_id
-            ]);
-
-            return response()->json([
-                'message' => 'Bookmark is added successfully'
-            ], 200);
-
-        } catch (\Exception $ex) {
-            $message = $ex->getMessage();
-            return response()->json($message, 400);
-        }
+        $bookmark = Bookmark::create($request->validated());
+        return success([
+            'message' => 'Bookmark is added successfully',
+            'bookmark' => $bookmark
+        ], 201);
     }
 
 
-    public function update(BookmarkRequest $request, $id)
+    public function update(BookmarkRequest $request, Bookmark $bookmark)
     {
-        try {
-            $bookmark = Bookmark::find($id);
-
-            if($bookmark) {
-                $bookmark->update([
-                    'user_id' => $request->user_id,
-                    'ad_id' => $request->ad_id
-                ]);
-
-                return response()->json([
-                    'message' => 'Bookmark updated successfully'
-                ], 200);
-            }
-                return response()->json([
-                    'message' => 'Bookmark not found'
-                ], 404);
-
-        } catch (\Exception $ex) {
-            $message = $ex->getMessage();
-            return response()->json($message, 400);
-        }
+        $bookmark->update($request->validated());
+        return success([
+            'message' => 'Bookmark updated successfully',
+            'bookmark' => $bookmark
+        ]);
     }
 
-
-    public function destroy($id)
+    public function destroy(Bookmark $bookmark)
     {
-        try {
-            $bookmark = Bookmark::find($id);
-
-            if($bookmark) {
-                $bookmark->delete();
-                return response()->json([
-                    'message' => 'Bookmark deleted successfully'
-                ], 200);
-            }
-            return response()->json([
-                'message' => 'Bookmark not found'
-            ], 404);
-
-        } catch (\Exception $ex) {
-            $message = $ex->getMessage();
-            return response()->json($message, 400);
-        }
+        $bookmark->delete();
+        return success([
+            'message' => 'Bookmark deleted successfully'
+        ], 200);
     }
 }

@@ -9,31 +9,26 @@ class CategoryRepository
 {
     public function all()
     {
-        $categories = CategoryResource::collection(Category::where('published',1)->orderBy('order_is')->get());
-            if (!$categories->isEmpty()) {
-                return response()->json([
-                'status' => 200,
+        $categories = CategoryResource::collection(Category::where('published', 1)->orderBy('order_is')->get());
+
+        if (!$categories->isEmpty()) {
+            return success([
                 'categories' => $categories
-                ]);
-            }
-
-        return response()->json(['status' => 404,'message'=>'not found any category']);
-
-    }    
-    public function findById($id)
-    {
-
-        $category = CategoryResource::collection(
-            Category::where('published',1)->where('id', $id)->get()
-        );
-        if (!$category->isEmpty()) {
-
-            return response()->json(['status' => 200, 'category' => $category]);
-
+            ]);
         }
 
-        return response()->json(['status' => 404,'message'=>'this category not found or not available']);
+        return failed('not found any category', [], 404);
     }
-   
+    public function findById($id)
+    {
+        $category = CategoryResource::collection(
+            Category::where('published', 1)->where('id', $id)->get()
+        );
 
+        if (!$category->isEmpty()) {
+            return success($category);
+        }
+
+        return failed('this category not found or not available', [], 404);
+    }
 }
